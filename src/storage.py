@@ -49,7 +49,7 @@ class Storage:
     ## get_all_records() — получи список всех записей;
     def get_all_records(self):
         if not self.__is_exists():
-            return False
+            return ""
         try:
             data = self.__get_all_data()
         except: 
@@ -109,3 +109,9 @@ class Storage:
         }
 
         return records_with_curr_type
+    ## Очищает хранилище
+    def clear(self):
+        with open(self.__PATH, "w", encoding="utf-8") as f:
+            json.dump({}, f, ensure_ascii=False, indent=4)
+
+
